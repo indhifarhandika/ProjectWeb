@@ -1,5 +1,5 @@
 <!-- NavBar -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid pt-1">
     <a class="navbar-brand" href="#"><small style="color: #ffffff;"><em><strong><img src="{{ url('/img/icon.ico') }}">{{ __('AzarineBag.id') }}</strong></em></small></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,7 +16,7 @@
         </div>
         <a class="nav-item nav-link text-white" href="#">{{ __('Contact') }}</a>
         <div class="nav-item dropdown">
-          <a href="" class="nav-link text-white" id="nDrop" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a href="" class="nav-link dropdown-toggle text-white" id="nDrop" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span title="User">{{ Auth::user()?Auth::user()->name:'Guest' }}</span>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="nDrop">

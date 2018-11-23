@@ -21,15 +21,11 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('css')
-    @yield('js')
 </head>
 <body>
-    <div id="app" class=" bg-light mt-5">
-        @include('layouts.navbar')
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+    @include('layouts.navbar')
+    @yield('content')
+    @yield('js')
     @yield('footer')
 </body>
 </html>

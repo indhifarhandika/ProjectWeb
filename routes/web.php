@@ -11,15 +11,21 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
-})->name('/');
+});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('/');
 
 Route::get('/home/admin', 'HomeController@admin')->name('admin');
+
+Route::get('/produk', function (){
+    //Transaksi
+    // return dd(Auth::user());
+    return view('user.beli');
+})->name('beli');
 
 Route::get('/random', function(){
     //Code kamu

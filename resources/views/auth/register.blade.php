@@ -4,6 +4,14 @@
 Register
 @endsection
 
+@section('css')
+<style>
+.card {
+  margin-top: 5rem;
+}
+</style>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
