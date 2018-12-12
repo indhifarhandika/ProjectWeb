@@ -22,6 +22,7 @@ Route::get('/', 'HomeController@index')->name('/');
 Route::get('/home/admin', 'HomeController@admin')->name('admin')->middleware('auth');
 
 Route::get('produk/{id}', 'HomeController@produk')->name('beli');
+<<<<<<< HEAD
 
 Route::post('insert', 'HomeController@insert')->name('insert');
 
@@ -29,6 +30,10 @@ Route::get('edit/{id}', function () {
   // code...
   echo "string";
 })->name('edit');
+=======
+
+Route::post('/home/admin', 'HomeController@tambah')->name('tambah');
+>>>>>>> 29df1b6dd2195e481fa03f824a42ead14b8d2c3c
 
 Route::get('/random', function(){
     //Code kamu

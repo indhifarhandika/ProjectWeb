@@ -25,7 +25,11 @@ Admin
                 </button>
               </div>
               <div class="modal-body">
+<<<<<<< HEAD
                 <form class="" action="{!! route('insert') !!}" method="post" enctype="multipart/form-data" id="form1">
+=======
+                <form class="" action="{!! route('tambah') !!}" method="post" id="form1">
+>>>>>>> 29df1b6dd2195e481fa03f824a42ead14b8d2c3c
                   @csrf
                   <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -47,20 +51,20 @@ Admin
                     <div class="input-group-prepend">
                      <span class="input-group-text" for="harga">Harga</span>
                    </div>
-                    <input type="number" name="harga" value="" class="form-control" id="harga" placeholder="100000">
+                    <input type="number" name="harga" value="" class="form-control" id="harga" placeholder="100000" required>
                   </div>
                   <div class="form-group input-group">
                     <div class="input-group-prepend">
                      <span class="input-group-text" for="totalBarang">Total Barang</span>
                     </div>
-                    <input type="number" name="totalBarang" value="" class="form-control" id="totalBarang" placeholder="10">
+                    <input type="number" name="totalBarang" value="" class="form-control" id="totalBarang" placeholder="10" required>
                   </div>
                   <div class="form-group input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="gambar">Gambar</span>
                     </div>
                     <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="inputGambar" name="gambar" aria-describedby="gambar">
+                      <input type="file" class="custom-file-input" id="inputGambar" name="gambar" aria-describedby="gambar" required>
                       <label class="custom-file-label" for="inputGambar">Klik</label>
                     </div>
                   </div>
@@ -86,6 +90,22 @@ Admin
         <a href="{!! route('admin', 'stok') !!}" style="cursor: pointer;" id="stok" class="nav-item nav-link text-white font-weight-bold">Laporan Stok</a>
       </div>
     </div>
+    @if ($data==='sukses')
+    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+      <h4>Data Berhasil Ditambahkan</h4>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    @elseif ($data==='gagal')
+    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+      <h4>Data Gagal Ditambahkan</h4>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    @else
+    @endif
     <div>
       {{-- Menampilkan Stok, User, Transaksi --}}
       @if (isset($_GET['user']))
