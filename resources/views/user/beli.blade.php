@@ -8,7 +8,7 @@ Beli
 <div class="container">
   <div class="row">
     <div class="col-sm">
-      <h1>BELI</h1>
+      <h1>Kode Tas: {{ $data['id_barang'] }}</h1>
     </div>
   </div>
 </div>

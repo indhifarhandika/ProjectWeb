@@ -2,6 +2,40 @@
 @section('title')
 Home
 @endsection
+
+@section('css')
+<style media="screen">
+* {
+  margin: 0;
+}
+
+.container-fuild {
+  margin-right: 1rem;
+}
+
+/* Unutk layar ukuran 530px kebawah */
+@media screen and (max-width: 530px) {
+  .produk {
+    margin: 17%;
+  }
+}
+
+/* Untuk layar ukuran 400px kebawah */
+@media screen and (max-width: 400px) {
+  .produk {
+    margin-left: 10%;
+  }
+}
+
+/* Untuk layar ukuran 360px */
+@media screen and (max-width: 360px) {
+  .produk {
+    margin-left: 6%;
+  }
+}
+</style>
+@endsection
+
 @section('content')
   <div class="container-fuild">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -41,21 +75,23 @@ Home
       </a>
     </div>
   </div>
-  <div class="container">
-    @for ($u=0; $u < 3; $u++)
+  <div class="container-fuild">
+    @for ($u=0; $u < 2; $u++)
       <div class="row mt-4">
-        @for ($i=0; $i < 3; $i++)
-          <div class="col-sm">
-            <div class="card" style="width: 18rem;">
-              <img class="card-img-top" src="{{ url('img/imgTas/TAS100.jpg') }}" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">TAS IMPORT</h5>
-                <p class="card-text">Kode Tas: TAS{{ rand(100, 900)}}.<br><small class="card-text">Harga: Rp.150000</small></p>
-                <a href="{{(Auth::user()) ? '/produk' : '/'}}" class="ml-5 btn btn-outline-primary">{{ __('Beli') }}</a>
-                <a href="#" class="ml-5 btn btn-outline-success">{{ __('Lihat') }}</a>
+        @for ($i=0; $i < 6; $i++)
+          @foreach ($dataStok as $stok)
+            <div class="col-sm">
+              <div class="card produk" style="width: 15rem;">
+                <img class="card-img-top" src="{{ url('img/imgTas/TAS100.jpg') }}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Tas {{ $stok->jenis_barang }}</h5>
+                  <p class="card-text">Kode Tas: {{ $stok->id_barang }}<br><small class="card-text">Harga: Rp.{{ $stok->harga }}</small></p>
+                  <a href="{{(Auth::user()) ? '/produk/'.$stok->id_barang : '/'}}" class="btn btn-outline-primary">{{ __('Beli') }}</a>
+                  <a href="#" class="btn btn-outline-success">{{ __('Lihat') }}</a>
+                </div>
               </div>
             </div>
-          </div>
+          @endforeach
         @endfor
       </div>
     @endfor

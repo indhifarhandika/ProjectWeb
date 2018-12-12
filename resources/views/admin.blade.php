@@ -7,7 +7,7 @@ Admin
 @section('content')
   <div class="jumbotron jumbotron-fuild" style="border-radius: 0;top: 0;margin-bottom: 0;background-image: url({{ url('/img/background.jpg') }}); background-size: cover; height: 25rem;">
     <div class="container text-center">
-      <h1 class="text-white" style="font-family: 'Gugi', cursive; font-size: 4rem; padding-top: 4.5rem;">Admin Panel</h1>
+      <h1 class="text-white" style="font-family: 'Gugi', cursive; font-size: 13vmin; padding-top: 4.5rem;">Admin Panel</h1>
     </div>
   </div>
   <div class="container-fuild">
@@ -25,7 +25,7 @@ Admin
                 </button>
               </div>
               <div class="modal-body">
-                <form class="" action="" method="post" enctype="multipart/form-data" id="form1">
+                <form class="" action="{!! route('insert') !!}" method="post" enctype="multipart/form-data" id="form1">
                   @csrf
                   <div class="form-group input-group">
                     <div class="input-group-prepend">

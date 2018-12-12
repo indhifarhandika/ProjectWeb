@@ -5,15 +5,23 @@ Register
 @endsection
 
 @section('css')
-<style>
-.card {
-  margin-top: 5rem;
-}
-</style>
+  <style>
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    display: -ms-flexbox;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-bottom: 40px;
+  }
+  </style>
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
