@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Barang;
 use App\Stok;
 use App\User;
-use Illuminate\Routing\Redirector;
 use App\Transaksi;
 use Carbon\Carbon;
 use Illuminate\Routing\Redirector;
@@ -33,18 +32,7 @@ class HomeController extends Controller
     {
       $dataStok = $this->showStok();
       return view('welcome', compact('dataStok'));
-<<<<<<< HEAD
-    }
 
-    public function produk($id){
-      //Code kamu
-      $data['id_barang'] = $id;
-      return view('user.beli', compact('data'));
-    }
-
-    //Admin Panel
-    public function admin(){
-=======
     }
 
     public function produk($id){
@@ -55,11 +43,10 @@ class HomeController extends Controller
 
     //Admin Panel
     public function admin(Request $request){
->>>>>>> 29df1b6dd2195e481fa03f824a42ead14b8d2c3c
         $dataStok = $this->showStok(); //Memanggil function showStok
         $dataUser = $this->showUser(); //Memanggil function showUser
         $dataTransaksi = $this->showTransaksi(); //Memanggil function showTransaksi
-        
+
         $data = $request->data;
         $row = 1;
         //compact untuk mengirim data ke view
@@ -89,7 +76,6 @@ class HomeController extends Controller
         return DB::select('SELECT transaksis.id_transaksi, users.name, transaksis.id_barang, transaksis.total_barang, transaksis.tgl, transaksis.status FROM transaksis, users WHERE users.id = transaksis.id_user');
     }
 
-<<<<<<< HEAD
 
     public function insert(Request $request) {
       $imga = $request->file('gambar')->store('public\gambar');
@@ -100,25 +86,15 @@ class HomeController extends Controller
         'total_barang'=>$request->totalBarang,
         'gambar'=>$imga
       ]);
-        return redirect()->route('admin');
-=======
-    // Insert data ke tabel Barangs
-    public function tambah(Request $request)
-    {
-      $insert = Barang::create([
-        'id_barang' => $request->kodeBarang,
-        'jenis_barang' => $request->jenisBarang,
-        'harga' => $request->harga,
-        'total_barang' => $request->totalBarang,
-        'gambar' => $request->gambar,
-        'tgl_update' => Carbon::now()->toDateTimeString()
-      ]);
-      if (!$insert) {
+      if (!$masuk) {
         $data['data'] = 'gagal';
       }else{
         $data['data'] = 'sukses';
       }
       return redirect()->route('admin', $data);
->>>>>>> 29df1b6dd2195e481fa03f824a42ead14b8d2c3c
+    }
+
+    public function update(Request $request){
+      
     }
 }

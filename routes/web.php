@@ -25,13 +25,8 @@ Route::get('produk/{id}', 'HomeController@produk')->name('beli');
 
 Route::post('insert', 'HomeController@insert')->name('insert');
 
-Route::get('edit/{id}', function () {
-  // code...
-  echo "string";
-})->name('edit');
+Route::get('update', 'HomeController@update')->name('update');
 
-
-Route::post('/home/admin', 'HomeController@tambah')->name('tambah');
 
 Route::get('/random', function(){
     //Code kamu

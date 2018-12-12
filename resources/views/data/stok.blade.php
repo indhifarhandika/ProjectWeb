@@ -35,7 +35,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form class="" action="{!! route('insert') !!}" method="post" enctype="multipart/form-data" id="form1">
+                <form class="" action="{!! route('update') !!}" method="post" enctype="multipart/form-data" id="form1">
                   @csrf
                   <div class="form-group input-group">
                     <div class="input-group-prepend">

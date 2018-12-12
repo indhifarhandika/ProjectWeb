@@ -25,11 +25,7 @@ Admin
                 </button>
               </div>
               <div class="modal-body">
-<<<<<<< HEAD
                 <form class="" action="{!! route('insert') !!}" method="post" enctype="multipart/form-data" id="form1">
-=======
-                <form class="" action="{!! route('tambah') !!}" method="post" id="form1">
->>>>>>> 29df1b6dd2195e481fa03f824a42ead14b8d2c3c
                   @csrf
                   <div class="form-group input-group">
                     <div class="input-group-prepend">
