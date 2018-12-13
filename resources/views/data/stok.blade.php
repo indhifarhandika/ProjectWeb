@@ -20,9 +20,27 @@
         <td>{{ $stok->jenis_barang}}</td>
         <td>{{ $stok->harga }}</td>
         <td>{{ $stok->total_barang }}</td>
-        <td><img src="{{ url('storage/'.$stok->gambar) }}"></td>
+        <td><img src="{!! asset('storage/'.$stok->gambar) !!}" style="height: 30px; width: 30px;"></td>
         <td>{{ $stok->tgl_update }}</td>
-        <td><a href="/home/admin?id={{ $stok->id_barang}}" data-toggle="modal" data-target="#{{ $stok->id_barang}}">Edit</a> | <a href="{{ '/hapus/'.$stok->id_barang }}">Hapus</a></td>
+        <td><a href="/home/admin?id={{ $stok->id_barang}}" data-toggle="modal" data-target="#{{ $stok->id_barang}}">Edit</a> | <a href="" data-toggle="modal" data-target="#exampleModal">Hapus</a></td>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin ingin menghapus {{ $stok->id_barang }}?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <a href="{{ '/hapus/'.$stok->id_barang }}" type="submit" class="btn btn-primary">Hapus</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- Form Insert Data -->
         <div class="modal fade" id="{{ $stok->id_barang}}" tabindex="-1" role="dialog" aria-labelledby="FormInsert" aria-hidden="true">
@@ -35,13 +53,14 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form class="" action="{!! route('update') !!}" method="post" enctype="multipart/form-data" id="form1">
+                <form class="" action="{!! route('update') !!}" method="post" enctype="multipart/form-data" id="formEdit{{ $row }}">
                   @csrf
                   <div class="form-group input-group">
                     <div class="input-group-prepend">
                      <span class="input-group-text" for="kodeBarang">Kode Barang</span>
                    </div>
-                    <input type="text" name="kodeBarang" value="{{ $stok->id_barang}}" class="form-control" id="kodeBarang" placeholder="" disabled>
+                    <input type="text" name="kd" value="{{ $stok->id_barang}}" class="form-control" id="kd" placeholder="" disabled>
+                    <input type="text" name="kodeBarang" value="{{ $stok->id_barang}}" class="form-control" id="kodeBarang" placeholder="" hidden>
                   </div>
                   <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -74,12 +93,12 @@
                       <span class="input-group-text" id="gambar">Gambar</span>
                     </div>
                     <div class="custom-file">
-                      <input type="file" class="custom-file-input" value="{{ $stok->gambar }}" id="inputGambar" name="gambar" aria-describedby="gambar">
-                      <label class="custom-file-label" for="inputGambar"></label>
+                      <input type="file" class="custom-file-input" id="inputGambar" name="gambar" aria-describedby="gambar">
+                      <label class="custom-file-label" for="inputGambar">Klik</label>
                     </div>
                   </div>
                   <div class="form-group text-center pt-4" style="border-top: 1px solid #e9ecef;">
-                    <button type="submit" name="update" class="btn btn-outline-primary" form="form1">Tambah</button>
+                    <button type="submit" name="update" class="btn btn-outline-primary btn-block" form="formEdit{{ $row }}">Simpan</button>
                   </div>
                 </form>
               </div>

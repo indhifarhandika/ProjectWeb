@@ -87,14 +87,48 @@ class HomeController extends Controller
         'gambar'=>$imga
       ]);
       if (!$masuk) {
-        $data['data'] = 'gagal';
+        $data['data'] = ['gagal', 'Ditambahkan'];
       }else{
-        $data['data'] = 'sukses';
+        $data['data'] = ['sukses', 'Ditambahkan'];
       }
       return redirect()->route('admin', $data);
     }
 
     public function update(Request $request){
-      
+      // dd($request->file('gambar'));
+      if ($request->file('gambar') === null) {
+        $query = Stok::where('id_barang', $request->kodeBarang)->update([
+          'jenis_barang'=>$request->jenisBarang,
+          'harga'=>$request->harga,
+          'total_barang'=>$request->totalBarang
+        ]);
+      }else {
+        $imga = $request->file('gambar')->store('public\gambar');
+        $query = Stok::where('id_barang', $request->kodeBarang)->update([
+          'jenis_barang'=>$request->jenisBarang,
+          'harga'=>$request->harga,
+          'total_barang'=>$request->totalBarang,
+          'gambar'=>$imga
+        ]);
+      }
+
+      if (!$query) {
+        $data['data'] = ['gagal', 'Diupdate'];
+      }else{
+        $data['data'] = ['sukses', 'Diupdate'];
+      }
+      return redirect()->route('admin', $data);
     }
+
+    public function hapus($id){
+        //Code kamu
+        $query = Stok::where('id_barang', $id)->delete();
+        if (!$query) {
+          $data['data'] = ['gagal', 'Dihapus'];
+        }else{
+          $data['data'] = ['sukses', 'Dihapus'];
+        }
+        return redirect()->route('admin', $data);
+    }
+
 }

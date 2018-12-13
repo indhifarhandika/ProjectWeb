@@ -65,9 +65,7 @@ Admin
                     </div>
                   </div>
                   <div class="form-group text-center pt-4" style="border-top: 1px solid #e9ecef;">
-                    <button type="submit" name="insert" class="btn btn-outline-primary" form="form1">Tambah</button>
-                    <button type="submit" name="update" class="btn btn-outline-primary mr-4 ml-4" form="form1">Update</button>
-                    <button type="submit" name="delete" class="btn btn-outline-primary" form="form1">Hapus</button>
+                    <button type="submit" name="insert" class="btn btn-outline-primary btn-block" form="form1">Tambah</button>
                   </div>
                 </form>
               </div>
@@ -86,22 +84,22 @@ Admin
         <a href="{!! route('admin', 'stok') !!}" style="cursor: pointer;" id="stok" class="nav-item nav-link text-white font-weight-bold">Laporan Stok</a>
       </div>
     </div>
-    @if ($data==='sukses')
-    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
-      <h4>Data Berhasil Ditambahkan</h4>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    @elseif ($data==='gagal')
-    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
-      <h4>Data Gagal Ditambahkan</h4>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    @else
-    @endif
+    @if ($data[0]==='sukses')
+      <div class="alert alert-primary alert-dismissible fade show text-center" role="alert">
+        <h4>Data Berhasil {{ $data[1] }}</h4>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    @elseif ($data[0]==='gagal')
+      <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+        <h4>Data Gagal {{ $data[1] }}</h4>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      @else
+      @endif
     <div>
       {{-- Menampilkan Stok, User, Transaksi --}}
       @if (isset($_GET['user']))
