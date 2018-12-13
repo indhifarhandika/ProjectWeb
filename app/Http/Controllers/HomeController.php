@@ -7,6 +7,7 @@ use App\Stok;
 use App\User;
 use App\Transaksi;
 use Carbon\Carbon;
+use App\Http\Controllers\Auth;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -37,8 +38,12 @@ class HomeController extends Controller
 
     public function produk($id){
       //Code kamu
+      // $user = User::where('name', Auth::user())->get();
+      $result = Stok::where('id_barang', $id)->get();
+      $code = rand();
       $data['id_barang'] = $id;
-      return view('user.beli', compact('data'));
+      $data['id_transaksi'] = 'TR' . $code;
+      return view('user.beli', compact('data', 'result'));
     }
 
     //Admin Panel
@@ -133,7 +138,7 @@ class HomeController extends Controller
 
     public function hapusTr(Request $request){
         //Code kamu
-        $request->
+        // $request->
     }
 
 }
