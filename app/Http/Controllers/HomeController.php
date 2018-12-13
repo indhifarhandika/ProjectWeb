@@ -131,4 +131,9 @@ class HomeController extends Controller
         return redirect()->route('admin', $data);
     }
 
+    public function hapusTr(Request $request){
+        //Code kamu
+        $request->
+    }
+
 }

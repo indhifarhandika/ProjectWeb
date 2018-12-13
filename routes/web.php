@@ -29,6 +29,8 @@ Route::post('update', 'HomeController@update')->name('update');
 
 Route::get('hapus/{id}', 'HomeController@hapus')->name('hapus');
 
+Route::post('hapus', 'HomeController@hapusTr')->name('hapusTr');
+
 Route::get('/random', function(){
     //Code kamu
     $id = "TR";

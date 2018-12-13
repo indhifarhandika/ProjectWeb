@@ -24,7 +24,7 @@
   </tbody>
 </table>
 
-<form class="d-flex justify-content-center" action="" method="post" id="formTransaksi">
+<form class="d-flex justify-content-center" action="{!! route('hapusTr') !!}" method="post" id="formHapus">
   <div class="input-group mb-3 pl-2" style="width: 20rem;">
     <div class="input-group-append">
       <button style="border-top-left-radius: 5px; border-bottom-left-radius: 5px;" class="btn btn-outline-primary" type="button" id="hapus" data-toggle="modal" data-target="#modalHapus">Hapus</button>
@@ -32,11 +32,11 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-body">
-              <h4>Apakah anda yakin ?</h4>
+              <h4>Apakah anda yakin ingin menghapus ?</h4>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary"data-dismiss="modal">Tidak</button>
-              <button type="submit" class="btn btn-primary" name="iya" form="formTransaksi">Iya</button>
+              <button type="submit" class="btn btn-primary" name="iya" form="formHapus">Iya</button>
             </div>
           </div>
         </div>
