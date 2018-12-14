@@ -43,7 +43,7 @@ Home
 
 @section('content')
   <div class="container-fuild">
-    @for ($u=0; $u < 3; $u++)
+    @for ($u=0; $u < 1; $u++)
       <div class="row mt-4">
         @for ($u=0; $u < 3; $u++)
           @foreach ($dataStok as $stok)
@@ -52,9 +52,13 @@ Home
                 <img class="card-img-top" src="{!! asset('storage/'.$stok->gambar) !!}"  style="height: 15rem; width: 100%" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">Tas {{ $stok->jenis_barang }}</h5>
-                  <p class="card-text">Kode Tas: {{ $stok->id_barang }}<br><small class="card-text">Harga: Rp.{{ $stok->harga }}</small></p>
-                  <a href="{{(Auth::user()) ? '/produk/'.$stok->id_barang : '/'}}" class="btn btn-outline-primary">{{ __('Beli') }}</a>
-                  <a href="#" class="btn btn-outline-success">{{ __('Lihat') }}</a>
+                  <p class="card-text">Kode Tas: {{ $stok->id_barang }}<br><small class="card-text">Harga: Rp.{{ $stok->harga }}</small><br>
+                  @if ($stok->total_barang === 0)
+                    <strong>Maaf Stok Habis</strong>
+                  @endif
+                  </p>
+                  <a href="{{(Auth::user()) ? '/produk/'.$stok->id_barang : '/'}}" class="btn btn-outline-primary btn-block">{{ __('Beli')}}</a>
+                  {{-- <a href="#" class="btn btn-outline-success">{{ __('Lihat') }}</a> --}}
                 </div>
               </div>
             </div>

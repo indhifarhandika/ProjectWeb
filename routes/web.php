@@ -29,12 +29,13 @@ Route::post('update', 'HomeController@update')->name('update');
 
 Route::get('hapus/{id}', 'HomeController@hapus')->name('hapus');
 
-Route::post('hapus', 'HomeController@hapusTr')->name('hapusTr');
+Route::post('/hapus/transaksi', 'HomeController@hapusTr')->name('htr');
+
+Route::post('/produk/bayar', 'HomeController@bayar')->name('bayar');
+
+Route::post('bayar', 'HomeController@insertTr')->name('insertTr');
 
 Route::get('/random', function(){
     //Code kamu
-    $id = "TR";
-    $tra = rand();
-    $result = $id . $tra;
-    return var_dump(strval($result));
+    return var_dump(Auth::user()->status);
 });

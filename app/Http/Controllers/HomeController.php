@@ -7,7 +7,7 @@ use App\Stok;
 use App\User;
 use App\Transaksi;
 use Carbon\Carbon;
-use App\Http\Controllers\Auth;
+use Auth;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -48,14 +48,18 @@ class HomeController extends Controller
 
     //Admin Panel
     public function admin(Request $request){
+      if (Auth::user()->status === 'admin') {
+        // code...
         $dataStok = $this->showStok(); //Memanggil function showStok
         $dataUser = $this->showUser(); //Memanggil function showUser
         $dataTransaksi = $this->showTransaksi(); //Memanggil function showTransaksi
-
         $data = $request->data;
         $row = 1;
         //compact untuk mengirim data ke view
         return view('admin', compact('dataStok', 'dataTransaksi', 'dataUser', 'row', 'data'));
+      }else {
+        return redirect()->route('/');
+      }
     }
 
     //Mengontrol Tabel
@@ -138,7 +142,45 @@ class HomeController extends Controller
 
     public function hapusTr(Request $request){
         //Code kamu
-        // $request->
+        // dd($request);
+        if ($request->pilih === "1") {
+          // Konfirmasi Pesanan
+          Transaksi::where('id_transaksi', $request->status)->update(['status' => 'Terkirim']);
+          // dd($query);
+          $data = ['transaksi', 'sukses'];
+        }else {
+          // Hapus data transaksi
+          Transaksi::where('id_transaksi', $request->status)->delete();
+          $data = ['transaksi', 'sukses'];
+        }
+        return redirect()->route('admin', $data);
+    }
+
+    public function bayar(Request $request){
+        //Code kamu
+        $data['transaksi'] = [
+          $request->id_transaksi,
+          $request->id_user,
+          $request->id_barang,
+          $request->harga,
+          $total_harga = $request->harga * $request->total_barang,
+          $request->total_barang,
+          $request->status,
+        ];
+        return view('user.bayar', compact('data'));
+    }
+
+    public function insertTr(Request $request){
+        //Code kamu
+        $query = Transaksi::insert([
+          'id_transaksi'=>$request->id_transaksi,
+          'id_user'=>$request->id_user,
+          'id_barang'=>$request->id_barang,
+          'total_barang'=>$request->total_barang,
+          'total_harga'=>$request->total_harga,
+          'status'=>$request->status
+        ]);
+      return redirect()->route('/');
     }
 
 }

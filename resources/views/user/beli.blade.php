@@ -29,20 +29,22 @@ Beli
       <h5 class="mt-3">Kode Tas: {{ $data['id_barang'] }}</h5>
       <h6>Jenis Barang: {{ $row->jenis_barang }}</h6>
       <h6>Harga: Rp.{{ $row->harga }}</h6>
-      <h6>Stok: {{ $row->total_barang }} Unit</h6>
+      <h6>Stok: {{ ($row->total_barang === 0) ? 'Maaf Stok Habis' : $row->total_barang.' Unit' }}</h6>
       @endforeach
-      <form class="" action="insertTransaksi" method="post">
+      <form class="" action="{!! route('bayar') !!}" method="post">
+        @csrf
         <input type="text" name="id_transaksi" value="{{ $data['id_transaksi'] }}" class="form-control" hidden>
         <input type="number" name="id_user" value="{{ Auth::user()->id }}" class="form-control" hidden>
         <input type="text" name="id_barang" value="{{ $data['id_barang'] }}" class="form-control" hidden>
         <input type="text" name="status" value="Belum Dikonfirmasi" class="form-control" hidden>
+        <input type="text" name="harga" value="{{ $row->harga }}" class="form-control" hidden>
         <div class="form-group input-group">
           <div class="input-group-prepend">
            <span class="input-group-text" for="kodeBarang">Jumlah Barang</span>
          </div>
-          <input type="number" name="total_barang" value="" class="form-control" id="kodeBarang" required autocomplete="off">
+          <input type="number" name="total_barang" value="" class="form-control" id="kodeBarang" {{ ($row->total_barang === 0) ? 'disabled' : ''}} required autocomplete="off">
         </div>
-        <input class="btn btn-outline-primary" type="submit" value="Bayar">
+        <input class="btn btn-outline-primary" type="submit" value="Konfirmasi" {{ ($row->total_barang === 0) ? 'disabled' : ''}}>
       </form>
     </div>
     <div class="col-sm-8">
@@ -50,7 +52,7 @@ Beli
         <h5 class="text-center pt-2">Cara Pembayaran</h5>
         <p class="pl-2">1. Simpan atau Screen capture ID Transaksi<br>
           2. Klik Tombol <strong>Bayar</strong><br>
-          3. Transfer uang ke Rekening BRI : <strong>6210939834957</strong> Atas Nama <strong>Irma Dwi Astutik</strong><br>
+          3. Transfer uang ke Rekening BRI : <strong>6210939834957</strong> a/n <strong>Irma Dwi Astutik</strong><br>
           4. Kirim bukti transfer dan ID Transaksi ke nomor WhatsApp : 085771232132
         </p>
       </div>

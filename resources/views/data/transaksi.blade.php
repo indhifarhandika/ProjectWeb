@@ -24,40 +24,25 @@
   </tbody>
 </table>
 
-<form class="d-flex justify-content-center" action="{!! route('hapusTr') !!}" method="post" id="formHapus">
-  <div class="input-group mb-3 pl-2" style="width: 20rem;">
-    <div class="input-group-append">
-      <button style="border-top-left-radius: 5px; border-bottom-left-radius: 5px;" class="btn btn-outline-primary" type="button" id="hapus" data-toggle="modal" data-target="#modalHapus">Hapus</button>
-      <div class="modal fade" id="modalHapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-body">
-              <h4>Apakah anda yakin ingin menghapus ?</h4>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary"data-dismiss="modal">Tidak</button>
-              <button type="submit" class="btn btn-primary" name="iya" form="formHapus">Iya</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    <input type="text" class="form-control" placeholder="Kode Transaksi" name="status" aria-label="Konfirmasi" aria-describedby="konfirmasi" autocomplete="off" required>
-    <div class="input-group-append">
-      <button class="btn btn-outline-primary" type="button" id="konfirmasi" form="formTransaksi" data-toggle="modal" data-target="#modalKonfirmasi">Konfirmasi</button>
-      <div class="modal fade" id="modalKonfirmasi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-body">
-              <h4>Apakah anda yakin ?</h4>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary"data-dismiss="modal">Tidak</button>
-              <button type="submit" class="btn btn-primary" name="iya2" form="formTransaksi">Iya</button>
-            </div>
-          </div>
+<form class="d-flex justify-content-center mb-4" action="{!! route('htr') !!}" method="post" id="formHapus">
+  @csrf
+  <div class="row">
+    <div class="col-sm-6">
+      <input type="text" class="form-control" placeholder="Kode Transaksi" name="status" aria-label="Konfirmasi" aria-describedby="konfirmasi" autocomplete="off" required>
+    </div>
+    <div class="col-sm-5">
+      <div class="input-group">
+        <select name="pilih" class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+          <option selected>Pilih aksi...</option>
+          <option value="1">Konfirmasi Pesanan</option>
+          <option value="2">Hapus</option>
+        </select>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit">Oke</button>
         </div>
       </div>
     </div>
+  </div>
   </div>
   </div>
 </form>
